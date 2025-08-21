@@ -1,0 +1,36 @@
+jobrunr:
+  database:
+    database-name: harpagon
+    type: mongodb
+    table-prefix: jobrunr-
+  background-job-server:
+    thread-type: virtualthreads
+    enabled: true
+
+
+spring:
+  application:
+    name: harpagon
+  main:
+    allow-bean-definition-overriding: true
+    #    lazy-initialization: true
+    banner-mode: "off"
+  data:
+    mongodb:
+      auto-index-creation: true
+      uri: mongodb://localhost:27017/harpagon
+      uuid-representation: standard
+  threads:
+    virtual:
+      enabled: true
+
+management:
+  server:
+    port: 8080
+    servlet:
+      context-path: /
+  endpoints:
+    web:
+      base-path: /
+      exposure:
+        include: [ prometheus, health, info ]
